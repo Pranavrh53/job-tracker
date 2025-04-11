@@ -1,0 +1,26 @@
+CREATE DATABASE IF NOT EXISTS job_tracker;
+USE job_tracker;
+
+CREATE TABLE IF NOT EXISTS users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS jobs (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT,
+  company VARCHAR(255),
+  position VARCHAR(255),
+  status VARCHAR(100),
+  deadline DATE,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS files (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT,
+  filename VARCHAR(255),
+  filepath VARCHAR(255),
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
