@@ -50,5 +50,5 @@ File Storage: (e.g. Multer/local or cloud storage - specify if applicable)
 ├── package.json
 └── README.md
 
-</strong></summary>
+</strong></summary><details>
 
