@@ -51,3 +51,78 @@ job-tracker/
 └── README.md
  ``` </details> </pre>
 
+
+ ⚙️ Getting Started
+Prerequisites
+Node.js
+
+MySQL
+
+npm / yarn
+
+Installation
+Clone the repo:
+
+bash
+Copy
+Edit
+git clone https://github.com/Pranavrh53/job-tracker.git
+cd job-tracker
+Set up environment variables:
+
+Create a .env file in the server/ directory with:
+
+ini
+Copy
+Edit
+DB_HOST=localhost
+DB_USER=your_mysql_user
+DB_PASSWORD=your_mysql_password
+DB_NAME=job_tracker_db
+JWT_SECRET=your_jwt_secret
+Install dependencies:
+
+For both frontend and backend:
+
+bash
+Copy
+Edit
+cd client && npm install
+cd ../server && npm install
+Run the app:
+
+In one terminal tab (for backend):
+
+bash
+Copy
+Edit
+cd server
+npm run dev
+In another tab (for frontend):
+
+bash
+Copy
+Edit
+cd client
+npm start
+🛠️ API Overview
+
+Method	Endpoint	Description
+POST	/api/auth/register	Register a new user
+POST	/api/auth/login	Login
+GET	/api/jobs	Get all jobs
+POST	/api/jobs	Add a new job
+PUT	/api/jobs/:id	Update job
+DELETE	/api/jobs/:id	Delete job
+POST	/api/upload	Upload a document
+(Update endpoints to match your actual routes)
+
+💡 Future Improvements
+Notifications for application status updates
+
+Calendar/scheduler integration
+
+Analytics dashboard
+
+Dark mode 🌙
+
