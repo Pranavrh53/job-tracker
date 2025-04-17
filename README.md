@@ -29,9 +29,9 @@ File Storage: (e.g. Multer/local or cloud storage - specify if applicable)
 
 `Project Structure`
 
-job-tracker/
-
-├── client/   # React frontend
+<details> <summary><strong>
+  job-tracker/
+├── client/                   # React frontend
 │   ├── public/
 │   └── src/
 │       ├── components/
@@ -49,4 +49,6 @@ job-tracker/
 ├── .env
 ├── package.json
 └── README.md
+
+</strong></summary>
 
