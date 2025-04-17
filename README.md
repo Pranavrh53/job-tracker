@@ -1,7 +1,7 @@
-#🧾 Job Tracker
+🧾 Job Tracker
 A full-stack web application that helps users track their job applications, manage associated documents, and monitor progress throughout the hiring process.
 
-#🔧 Tech Stack
+🔧 Tech Stack
 ```
 Frontend: React, Tailwind CSS (or your styling choice)
 
@@ -16,7 +16,7 @@ Authentication: JWT-based authentication
 File Storage: (e.g. Multer/local or cloud storage - specify if applicable)
 ```
 
-#🚀 Features
+🚀 Features
 ```
 
 ✅ User registration and login
@@ -30,7 +30,7 @@ File Storage: (e.g. Multer/local or cloud storage - specify if applicable)
 🔍 Filter and search job applications
 ```
 
-#Project Structure
+Project Structure
 
 
 <pre> <details> <summary><strong>📁 Project Structure</strong></summary> ```bash 
@@ -56,7 +56,7 @@ job-tracker/
  ``` </details> </pre>
 
 
- #⚙️ Getting Started
+ ⚙️ Getting Started
  ```
 Prerequisites
 
