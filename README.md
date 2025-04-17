@@ -1,8 +1,8 @@
 🧾 #Job Tracker
 A full-stack web application that helps users track their job applications, manage associated documents, and monitor progress throughout the hiring process.
 
-`🔧 Tech Stack`
-
+#🔧 Tech Stack
+```
 Frontend: React, Tailwind CSS (or your styling choice)
 
 Backend: Node.js, Express
@@ -14,8 +14,10 @@ ORM: mysql2/promise
 Authentication: JWT-based authentication
 
 File Storage: (e.g. Multer/local or cloud storage - specify if applicable)
+```
 
-`🚀 Features`
+#🚀 Features
+```
 
 ✅ User registration and login
 
@@ -26,8 +28,10 @@ File Storage: (e.g. Multer/local or cloud storage - specify if applicable)
 📊 Track application stages (e.g., Applied, Interviewing, Offer)
 
 🔍 Filter and search job applications
+```
 
-`Project Structure`
+#Project Structure
+
 
 <pre> <details> <summary><strong>📁 Project Structure</strong></summary> ```bash 
 job-tracker/
@@ -52,14 +56,17 @@ job-tracker/
  ``` </details> </pre>
 
 
- ⚙️ Getting Started
+ #⚙️ Getting Started
+ ```
 Prerequisites
+
 Node.js
 
 MySQL
 
 npm / yarn
-
+```
+```
 Installation
 Clone the repo:
 
@@ -68,6 +75,8 @@ Copy
 Edit
 git clone https://github.com/Pranavrh53/job-tracker.git
 cd job-tracker
+```
+```
 Set up environment variables:
 
 Create a .env file in the server/ directory with:
@@ -80,6 +89,8 @@ DB_USER=your_mysql_user
 DB_PASSWORD=your_mysql_password
 DB_NAME=job_tracker_db
 JWT_SECRET=your_jwt_secret
+```
+```
 Install dependencies:
 
 For both frontend and backend:
@@ -89,22 +100,19 @@ Copy
 Edit
 cd client && npm install
 cd ../server && npm install
+```
+```
 Run the app:
 
 In one terminal tab (for backend):
 
-bash
-Copy
-Edit
-cd server
-npm run dev
-In another tab (for frontend):
+node server.js
 
-bash
-Copy
-Edit
-cd client
-npm start
+In another tab (for frontend):
+npm run dev
+
+```
+```
 🛠️ API Overview
 
 Method	Endpoint	Description
@@ -116,7 +124,8 @@ PUT	/api/jobs/:id	Update job
 DELETE	/api/jobs/:id	Delete job
 POST	/api/upload	Upload a document
 (Update endpoints to match your actual routes)
-
+```
+```
 💡 Future Improvements
 Notifications for application status updates
 
@@ -125,4 +134,5 @@ Calendar/scheduler integration
 Analytics dashboard
 
 Dark mode 🌙
+```
 
