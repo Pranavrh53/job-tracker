@@ -29,26 +29,5 @@ File Storage: (e.g. Multer/local or cloud storage - specify if applicable)
 
 `Project Structure`
 
-<details> <summary><strong>
-  job-tracker/
-├── client/                   # React frontend
-│   ├── public/
-│   └── src/
-│       ├── components/
-│       ├── pages/
-│       ├── hooks/
-│       ├── services/
-│       └── App.jsx
-├── server/                   # Node.js backend
-│   ├── controllers/
-│   ├── middleware/
-│   ├── models/
-│   ├── routes/
-│   ├── utils/
-│   └── index.js
-├── .env
-├── package.json
-└── README.md
-
-</strong></summary><details>
+<pre> <details> <summary><strong>📁 Project Structure</strong></summary> ```bash job-tracker/ ├── client/ # React frontend │ ├── public/ │ └── src/ │ ├── components/ │ ├── pages/ │ ├── hooks/ │ ├── services/ │ └── App.jsx ├── server/ # Node.js backend │ ├── controllers/ │ ├── middleware/ │ ├── models/ │ ├── routes/ │ ├── utils/ │ └── index.js ├── .env ├── package.json └── README.md ``` </details> </pre>
 
