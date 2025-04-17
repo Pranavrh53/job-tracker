@@ -1,4 +1,4 @@
-🧾 #Job Tracker
+#🧾 Job Tracker
 A full-stack web application that helps users track their job applications, manage associated documents, and monitor progress throughout the hiring process.
 
 #🔧 Tech Stack
