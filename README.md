@@ -30,7 +30,8 @@ File Storage: (e.g. Multer/local or cloud storage - specify if applicable)
 `Project Structure`
 
 job-tracker/
-├── client/                   # React frontend
+
+├── client/   # React frontend
 │   ├── public/
 │   └── src/
 │       ├── components/
