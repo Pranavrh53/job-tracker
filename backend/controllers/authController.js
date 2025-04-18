@@ -1,28 +1,34 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const db = require("../models/db");
+const crypto = require("crypto");
+const nodemailer = require("nodemailer");
 
-// Register a new user
-const register = async (req, res) => {
+// Configure email transporter (update with your email service)
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
+
+exports.register = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // Validate input
     if (!email || !password) {
       return res.status(400).json({ message: "Email and password are required" });
     }
 
-    // Check if user exists
     const [existingUser] = await db.execute("SELECT * FROM users WHERE email = ?", [email]);
     if (existingUser.length > 0) {
       return res.status(400).json({ message: "Email already registered" });
     }
 
-    // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
     console.log("🔒 Hashed password for", email, ":", hashedPassword);
 
-    // Insert user
     const [result] = await db.execute(
       "INSERT INTO users (email, password) VALUES (?, ?)",
       [email, hashedPassword]
@@ -40,19 +46,16 @@ const register = async (req, res) => {
   }
 };
 
-// Login existing user
-const loginUser = async (req, res) => {
+exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
   console.log("🔐 Login attempt:", { email });
 
   try {
-    // Validate input
     if (!email || !password) {
       console.log("❌ Missing email or password");
       return res.status(400).json({ message: "Email and password are required" });
     }
 
-    // Find user (case-insensitive email search)
     const [users] = await db.execute("SELECT id, email, password FROM users WHERE email = ?", [
       email.toLowerCase(),
     ]);
@@ -64,19 +67,15 @@ const loginUser = async (req, res) => {
     const user = users[0];
     console.log("🔍 Found user:", { id: user.id, email: user.email });
 
-    // Compare password
     const passwordMatch = await bcrypt.compare(password, user.password);
     if (!passwordMatch) {
       console.log("❌ Password mismatch for:", email);
       return res.status(401).json({ message: "Invalid email or password" });
     }
 
-    // Generate JWT
-    const token = jwt.sign(
-      { id: user.id, email: user.email },
-      process.env.JWT_SECRET,
-      { expiresIn: "24h" }
-    );
+    const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, {
+      expiresIn: "24h",
+    });
     console.log("✅ Token generated for:", email);
 
     res.status(200).json({
@@ -93,4 +92,61 @@ const loginUser = async (req, res) => {
   }
 };
 
-module.exports = { register, loginUser };
+exports.forgotPassword = async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const [users] = await db.execute("SELECT id, email FROM users WHERE email = ?", [email]);
+    if (users.length === 0) {
+      return res.status(404).json({ message: "Email not found" });
+    }
+
+    const user = users[0];
+    const resetToken = crypto.randomBytes(32).toString("hex");
+    const resetTokenExpiry = Date.now() + 3600000; // 1 hour
+
+    await db.execute(
+      "UPDATE users SET reset_token = ?, reset_token_expiry = ? WHERE id = ?",
+      [resetToken, resetTokenExpiry, user.id]
+    );
+
+    const resetLink = `http://localhost:3000/reset-password/${resetToken}`;
+    await transporter.sendMail({
+      to: email,
+      subject: "Job Tracker Password Reset",
+      html: `Click <a href="${resetLink}">here</a> to reset your password. Link expires in 1 hour.`,
+    });
+
+    res.json({ message: "Password reset email sent" });
+  } catch (err) {
+    console.error("❌ Forgot password error:", err);
+    res.status(500).json({ message: "Internal Server Error", error: err.message });
+  }
+};
+
+exports.resetPassword = async (req, res) => {
+  const { token, password } = req.body;
+
+  try {
+    const [users] = await db.execute(
+      "SELECT id FROM users WHERE reset_token = ? AND reset_token_expiry > ?",
+      [token, Date.now()]
+    );
+    if (users.length === 0) {
+      return res.status(400).json({ message: "Invalid or expired token" });
+    }
+
+    const user = users[0];
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    await db.execute(
+      "UPDATE users SET password = ?, reset_token = NULL, reset_token_expiry = NULL WHERE id = ?",
+      [hashedPassword, user.id]
+    );
+
+    res.json({ message: "Password reset successfully" });
+  } catch (err) {
+    console.error("❌ Reset password error:", err);
+    res.status(500).json({ message: "Internal Server Error", error: err.message });
+  }
+};
