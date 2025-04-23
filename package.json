@@ -8,15 +8,29 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "🧾 Job Tracker\r A full-stack web application that helps users track their job applications, manage associated documents, and monitor progress throughout the hiring process.",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
+    "moment": "^2.30.1",
     "multer": "^1.4.5-lts.2",
     "mysql2": "^3.14.0",
-    "nodemailer": "^6.10.1"
+    "nodemailer": "^6.10.1",
+    "react-router-dom": "^7.5.1",
+    "react-select": "^5.10.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pranavrh53/job-tracker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Pranavrh53/job-tracker/issues"
+  },
+  "homepage": "https://github.com/Pranavrh53/job-tracker#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.2.7"
   }
 }

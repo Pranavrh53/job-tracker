@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 
+
+
 function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -30,6 +32,17 @@ function Navbar() {
   if (isAuthPage) {
     return null;
   }
+  const Navbar = () => {
+    return (
+      <nav className="mb-4 text-center">
+        <Link to="/" className="mx-2 text-blue-600 hover:underline">Home</Link>
+        <Link to="/add-job" className="mx-2 text-blue-600 hover:underline">Add Job</Link>
+        <Link to="/insights" className="mx-2 text-blue-600 hover:underline">Insights</Link>
+      </nav>
+    );
+  };
+
+  
 
   return (
     <nav
@@ -95,4 +108,4 @@ const buttonStyle = {
   borderRadius: "4px",
 };
 
-export default Navbar;
+export default Navbar

@@ -1,3 +1,4 @@
+
 /* Reset and Global Styles */
 * {
   margin: 0;
@@ -415,4 +416,11 @@ body.dark-mode footer p {
     padding: 10px;
     font-size: 0.9rem;
   }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 }
+
+
