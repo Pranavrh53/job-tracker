@@ -1,4 +1,12 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+
+
+
+/* Add any custom styles below if needed */
 /* Reset and Global Styles */
 * {
   margin: 0;
@@ -417,10 +425,119 @@ body.dark-mode footer p {
     font-size: 0.9rem;
   }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
+}
+.ll{
+
+  font-size: 21px;
+  font-weight:500;
+}
+
+/* Styling the grid container */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Single column by default */
+  gap: 16px; /* Gap between cards */
+  padding: 16px;
+}
+
+@media (min-width: 768px) {
+  /* For medium-sized screens (tablet, desktop) */
+  .md\\:grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr); /* Two columns on medium screens */
+  }
+}
+
+@media (min-width: 1024px) {
+  /* For large-sized screens (laptops, desktops) */
+  .lg\\:grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr); /* Three columns on large screens */
+  }
+}
+
+/* Styling individual job cards */
+.grid .bg-white {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.grid .bg-white:hover {
+  transform: translateY(-5px); /* Hover lift effect */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Title and position text */
+.grid .bg-white h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.grid .bg-white p {
+  font-size: 0.875rem;
+  margin-bottom: 4px;
+  color: #555;
+}
+
+/* Salary, date applied, and status sections */
+.grid .bg-white .salary,
+.grid .bg-white .applied-date,
+.grid .bg-white .status {
+  font-size: 0.875rem;
+  color: #777;
+  margin-bottom: 8px;
+}
+
+/* Job link styling */
+.grid .bg-white a {
+  color: #1D4ED8; /* Tailwind's blue color */
+  text-decoration: none;
+}
+
+.grid .bg-white a:hover {
+  text-decoration: underline;
+}
+
+/* Action buttons (Edit/Delete) */
+.grid .bg-white .actions {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.grid .bg-white .actions button {
+  padding: 6px 12px;
+  font-size: 0.875rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.grid .bg-white .actions .edit-btn {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+.grid .bg-white .actions .edit-btn:hover {
+  background-color: #45a049;
+}
+
+.grid .bg-white .actions .delete-btn {
+  background-color: #f44336; /* Red */
+  color: white;
+}
+
+.grid .bg-white .actions .delete-btn:hover {
+  background-color: #e53935;
 }
 
 

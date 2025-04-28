@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const JobForm = () => {
   const [formData, setFormData] = useState({
@@ -10,7 +10,7 @@ const JobForm = () => {
     status: 'Applied',
     location: '',
   });
-  const history = useHistory();
+  const Navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,7 +23,7 @@ const JobForm = () => {
       stages: [{ stage: 'Applied', notes: 'Initial application', timestamp: new Date() }],
     };
     localStorage.setItem('jobs', JSON.stringify([...jobs, newJob]));
-    history.push('/');
+    Navigate.push('/');
   };
 
   return (
